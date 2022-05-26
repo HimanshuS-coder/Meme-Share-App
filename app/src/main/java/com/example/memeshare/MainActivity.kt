@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.progres)
         progressBar.visibility = View.VISIBLE
 
-        val queue = Volley.newRequestQueue(this)
+        // val queue = Volley.newRequestQueue(this)   -->  This is not a recommended way
         val url = "https://meme-api.herokuapp.com/gimme"
 
         // Request a string response from the provided URL.
@@ -88,7 +88,8 @@ class MainActivity : AppCompatActivity() {
             { Log.d("error",it.localizedMessage) })
 
         // Add the request to the RequestQueue.
-        queue.add(jsonObjectRequest)
+        // queue.add(jsonObjectRequest)     --> Nor this
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 
     fun nextMeme(view: View) {
